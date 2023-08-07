@@ -26,6 +26,7 @@
 
     var dataToShow = [];
     var maxDataPoints = 64; // Maximum number of data points to display
+    var currentX = 0; // Current x-axis value
 
     function fetchDataAndPlot() {
         $.get("/get_data/", function (response) {
@@ -45,11 +46,13 @@
 
             dataToShow.forEach(function (values, index) {
                 // x축 위치를 1부터 데이터의 개수까지 매칭하여 값을 추가합니다.
-                var xValue = Array(values.length).fill().map((_, i) => i + 1);
+                var xValue = Array(values.length).fill().map((_, i) => currentX + i + 1);
                 x = x.concat(xValue);
 
                 y = y.concat(values);
             });
+
+            currentX = x[x.length - 1]; // Update the current x-axis value
 
             var trace = {
                 x: x,
