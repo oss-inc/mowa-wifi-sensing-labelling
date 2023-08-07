@@ -1,10 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import json
 
-from matplotlib.artist import Artist
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-
 app = Flask(__name__)
 
 with open('config.json', 'r') as f:
@@ -27,13 +23,10 @@ def handle_data():
 
     if request.method == 'POST':
         csi_data = request.get_json()
-        # Assuming that 'data' is a key in the sent JSON.
-        # processed_data = csi_data
-        # print(csi_data)
-        # PROCESSED_DATA.extend(csi_data['data'])
         PROCESSED_DATA = csi_data['data']
 
-        # return jsonify(csi_data)
+        print(PROCESSED_DATA)
+
         return jsonify({"success": True})
 
     else:

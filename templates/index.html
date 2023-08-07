@@ -10,9 +10,23 @@
 <body>
 <div id="plotly-div"></div>
 <script>
+    var colorMap = {};
+
+    function getRandomColor() {
+        // Generate a random color in hexadecimal format (e.g., #RRGGBB)
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+    function getColor(index) {
+        if (!colorMap.hasOwnProperty(index)) {
+            colorMap[index] = getRandomColor();
+        }
+        return colorMap[index];
+    }
+
     function fetchDataAndPlot() {
         $.get("/get_data/", function (response) {
-
+            /*
             var totalLength = response.data.length;
 
             // 만약 데이터의 길이가 100을 초과하면, 마지막 100개의 데이터만 사용
@@ -20,34 +34,46 @@
             if (totalLength > 100) {
                 dataToShow = response.data.slice(-100); // 마지막 100개의 데이터 선택
             }
-            var currentLength = dataToShow.length;
-            var trace = {
-                x: Array.from({length: currentLength}, (_, index) => index + 1), // 1부터 시작하여 x값을 할당
-                y: dataToShow,
-                type: 'scatter',
-                mode: 'lines'
-            };
+            */
+
+            var dataToShow = response.data;
+
+            var traces = [];
+            dataToShow.forEach(function (value, index) {
+                var trace = {
+                    x: [index + 1], // 1부터 시작하여 x값을 할당
+                    y: [value],
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    name: 'Index ' + (index + 1),
+                    marker: {
+                        color: getColor(index)
+                    }
+                };
+                traces.push(trace);
+            });
 
             var layout = {
-                xaxis : {
+                xaxis: {
                     range: [-5, 65],
                     dtick: 5
                 },
                 yaxis: {
                     range: [0, 2000],
                     dtick: 200
-                }
+                },
+                showlegend: true
             };
-            Plotly.newPlot('plotly-div', [trace], layout);
+
+            Plotly.newPlot('plotly-div', traces, layout);
         });
     }
-
 
     // 웹 페이지 로드 시 한번 그리기
     fetchDataAndPlot();
 
-    // 1초마다 데이터 가져와서 차트 업데이트
-    setInterval(fetchDataAndPlot, 500);
+    // 0.1초마다 데이터 가져와서 차트 업데이트
+    setInterval(fetchDataAndPlot, 100);
 </script>
 </body>
 </html>
