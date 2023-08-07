@@ -24,47 +24,56 @@
         return colorMap[index];
     }
 
+    var dataToShow = [];
+    var maxDataPoints = 64; // Maximum number of data points to display
+
     function fetchDataAndPlot() {
         $.get("/get_data/", function (response) {
-            /*
-            var totalLength = response.data.length;
+            var newData = response.data;
 
-            // 만약 데이터의 길이가 100을 초과하면, 마지막 100개의 데이터만 사용
-            var dataToShow = response.data;
-            if (totalLength > 100) {
-                dataToShow = response.data.slice(-100); // 마지막 100개의 데이터 선택
+            // Append new data to the existing dataToShow
+            dataToShow = dataToShow.concat(newData);
+
+            // If the total data points exceed the maximum limit, remove older data points
+            if (dataToShow.length > maxDataPoints) {
+                dataToShow = dataToShow.slice(dataToShow.length - maxDataPoints);
             }
-            */
-
-            var dataToShow = response.data;
 
             var traces = [];
-            dataToShow.forEach(function (value, index) {
-                var trace = {
-                    x: [index + 1], // 1부터 시작하여 x값을 할당
-                    y: [value],
-                    type: 'scatter',
-                    mode: 'lines+markers',
-                    name: 'Index ' + (index + 1),
-                    marker: {
-                        color: getColor(index)
-                    }
-                };
-                traces.push(trace);
+            var x = [];
+            var y = [];
+
+            dataToShow.forEach(function (values, index) {
+                // x축 위치를 1부터 데이터의 개수까지 매칭하여 값을 추가합니다.
+                var xValue = Array(values.length).fill().map((_, i) => i + 1);
+                x = x.concat(xValue);
+
+                y = y.concat(values);
             });
+
+            var trace = {
+                x: x,
+                y: y,
+                type: 'scatter',
+                mode: 'markers',
+                marker: {
+                    color: getColor(1)
+                }
+            };
+            traces.push(trace);
 
             var layout = {
                 xaxis: {
-                    range: [-5, 65],
-                    dtick: 5
+                    title: 'Data Entry Order',
+                    dtick: 1
                 },
                 yaxis: {
                     range: [0, 2000],
                     dtick: 200
                 },
-                showlegend: true
             };
 
+            // 차트를 그립니다.
             Plotly.newPlot('plotly-div', traces, layout);
         });
     }
