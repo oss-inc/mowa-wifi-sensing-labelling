@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div id="plotly-div"></div>
+<div id="plotly-div" style="width: 100%; height: 100%;"></div>
 <script>
     var colorMap = {};
 
@@ -41,7 +41,7 @@
 
             var traces = [];
             var x = dataToShow.map(function (_, index) {
-                return index + 1; // x값을 1부터 시작하여 할당
+                return index; // x값을 1부터 시작하여 할당
             });
 
             var y = dataToShow; // y값에는 dataToShow 배열을 그대로 사용

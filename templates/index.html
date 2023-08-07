@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div id="plotly-div"></div>
+<div id="plotly-div" style="width: 100%; height: 100%;"></div>
 <script>
     var colorMap = {};
 
@@ -41,11 +41,11 @@
             var traces = [];
             dataToShow.forEach(function (value, index) {
                 var trace = {
-                    x: [index + 1], // 1부터 시작하여 x값을 할당
+                    x: [index], // 1부터 시작하여 x값을 할당
                     y: [value],
                     type: 'scatter',
                     mode: 'lines+markers',
-                    name: 'Index ' + (index + 1),
+                    name: 'Index ' + (index),
                     marker: {
                         color: getColor(index)
                     }
@@ -55,14 +55,13 @@
 
             var layout = {
                 xaxis: {
-                    range: [-5, 65],
-                    dtick: 5
+                    range: [-1, 65],
+                    dtick: 1
                 },
                 yaxis: {
                     range: [0, 2000],
                     dtick: 200
                 },
-                showlegend: true
             };
 
             Plotly.newPlot('plotly-div', traces, layout);

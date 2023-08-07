@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSI Data Visualization</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div id="plotly-div" style="width: 100%; height: 100%;"></div>
+<script>
+    var colorMap = {};
+
+    function getRandomColor() {
+        // Generate a random color in hexadecimal format (e.g., #RRGGBB)
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+    function getColor(index) {
+        if (!colorMap.hasOwnProperty(index)) {
+            colorMap[index] = getRandomColor();
+        }
+        return colorMap[index];
+    }
+
+    var dataToShow = [];
+    var maxDataPoints = 3; // Maximum number of data points to display
+    var numTraces = 0; // Number of traces currently displayed
+    var plotlyDiv = document.getElementById('plotly-div');
+
+    function fetchDataAndPlot() {
+        $.get("/get_data/", function (response) {
+            var newData = response.data;
+
+            // Append new data to the existing dataToShow
+            dataToShow.push(newData);
+
+            // If the total data points exceed the maximum limit, remove older data points
+            if (dataToShow.length > maxDataPoints) {
+                dataToShow.shift(); // Remove the oldest data
+            }
+
+            var traces = [];
+
+            // Create separate traces for each element in dataToShow
+            dataToShow.forEach(function (values, dataIndex) {
+                var x = Array(values.length).fill().map((_, i) => dataIndex * maxDataPoints + i + 1);
+                var trace = {
+                    x: x,
+                    y: values,
+                    type: 'scatter',
+
+
+                    mode: 'lines', // Change mode to 'lines' for connecting the data points with lines
+                    line: { // Customize the line style if needed
+                        color: getColor(dataIndex + 1),
+                        width: 2,
+                        shape: 'linear'
+                    }
+
+
+                    /*
+                    mode: 'markers',
+                    marker: {
+                        color: getColor(dataIndex + 1), // Use a different color for each trace
+                        size : dataIndex + 5
+                    }
+                     */
+
+                };
+                traces.push(trace);
+            });
+
+            // If the number of traces exceeds 4, remove the oldest traces
+            if (numTraces > 4) {
+                var tracesToRemove = numTraces - 4;
+                Plotly.deleteTraces(plotlyDiv, [...Array(tracesToRemove).keys()]);
+                numTraces -= tracesToRemove;
+            }
+
+            // Update the plot with the new traces
+            Plotly.react(plotlyDiv, traces);
+
+            var layout = {
+                yaxis: {
+                    range: [0, 2000],
+                    dtick: 200
+                },
+            };
+
+            // Update the layout
+            Plotly.update(plotlyDiv, {}, layout);
+        });
+    }
+
+    // 웹 페이지 로드 시 한번 그리기
+    fetchDataAndPlot();
+
+    // 0.3초마다 데이터 가져와서 차트 업데이트
+    setInterval(fetchDataAndPlot, 250);
+</script>
+</body>
+</html>

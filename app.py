@@ -31,7 +31,7 @@ def handle_data():
 
     else:
         print(PROCESSED_DATA)
-        return render_template('index3.html', data=json.dumps(PROCESSED_DATA))
+        return render_template('test.html', data=json.dumps(PROCESSED_DATA))
 
 
 @app.route('/get_data/')
