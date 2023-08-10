@@ -26,6 +26,7 @@
 
     var dataToShow = [];
     var maxDataPoints = 64; // Maximum number of data points to display
+    var currentX = 0; // Current x-axis value
 
     function fetchDataAndPlot() {
         $.get("/get_data/", function (response) {
@@ -40,23 +41,30 @@
             }
 
             var traces = [];
-            var x = dataToShow.map(function (_, index) {
-                return index; // x값을 1부터 시작하여 할당
+            var x = [];
+            var y = [];
+
+            dataToShow.forEach(function (values, index) {
+                // x축 위치를 1부터 데이터의 개수까지 매칭하여 값을 추가합니다.
+                var xValue = Array(values.length).fill().map((_, i) => currentX + i + 1);
+                x = x.concat(xValue);
+
+                y = y.concat(values);
             });
 
-            var y = dataToShow; // y값에는 dataToShow 배열을 그대로 사용
+            currentX = x[x.length - 1]; // Update the current x-axis value
 
             var trace = {
                 x: x,
                 y: y,
                 type: 'scatter',
-                mode: 'lines+markers',
+                mode: 'markers',
                 marker: {
                     color: getColor(1)
                 }
             };
             traces.push(trace);
-            console.log(traces)
+
             var layout = {
                 xaxis: {
                     title: 'Data Entry Order',
