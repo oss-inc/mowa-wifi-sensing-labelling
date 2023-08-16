@@ -41,7 +41,8 @@ def create_table():
         host=config['Database']['host'],
         user=config['Database']['user'],
         password=config['Database']['password'],
-        database=config['Database']['database']
+        database=config['Database']['database'],
+        auth_plugin='mysql_native_password'
     )
 
     cursor = db_connection.cursor()
@@ -73,7 +74,8 @@ def start_collection():
             host=config['Database']['host'],
             user=config['Database']['user'],
             password=config['Database']['password'],
-            database=config['Database']['database']
+            database=config['Database']['database'],
+            auth_plugin='mysql_native_password'
         )
 
         cursor = db_connection.cursor()
@@ -112,7 +114,8 @@ def end_collection():
             host=config['Database']['host'],
             user=config['Database']['user'],
             password=config['Database']['password'],
-            database=config['Database']['database']
+            database=config['Database']['database'],
+            auth_plugin='mysql_native_password'
         )
 
         cursor = db_connection.cursor()
@@ -140,7 +143,7 @@ def end_collection():
 
 @app.route('/get_config/')
 def get_config():
-    return jsonify(config=config['SERVER']['host'])
+    return jsonify(config=config['private_SERVER']['host'])
 
 
 @app.route('/csi-data/', methods=['POST', 'GET'])
@@ -167,4 +170,4 @@ def get_data():
 
 
 if __name__ == '__main__':
-    app.run(host=config['SERVER']['host'], port=config['SERVER']['port'])
+    app.run(host=config['publish_SERVER']['host'], port=config['publish_SERVER']['port'])
