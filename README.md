@@ -8,20 +8,37 @@ This project enables real-time storage of CSI (channel state information) data i
 
 #### Software
 * Linux Ubuntu
+    > I did it on Linux for the experiment, but it is executable regardless of OS(Windows, macOS).
 * MySQL
 * Python == 3.8
 
 #### Python Libraries - Ubuntu
+
+<details>
+<summary>Open </summary>
+<div markdown="1">
+
 * Flask
 * mysql-connector-python
 
+</div>
+</details>
+
 #### Python Libraries - Raspberry Pi 4
+
+<details>
+<summary>Open </summary>
+<div markdown="1">
+  
 * pypcap
 * dpkt
 * keyboard
 * pandas
 * numpy
 * requests
+
+</div>
+</details>
 
 ### Installing
 1. Clone the project repository
