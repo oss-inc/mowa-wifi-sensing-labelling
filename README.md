@@ -58,7 +58,8 @@ pip install -r requirements_server.txt
 pip install -r requirements_pi.txt
 ```
 
-### Usage
+## Usage
+### Execution Program
 1. Run `app.py` for Flask Server
 ```
 python app.py 
@@ -70,7 +71,7 @@ sudo python3 csi_send_server.py
 ```
 
 
-### Config
+### Configuration
 1. CSI Data Extraction Mac Address Filtering
 ```
 selected_mac = 'Enter your AP MAC Address'
@@ -104,4 +105,7 @@ CREATE TABLE Your Database Name .{table_name} (
     );
 ```
 
-* Table name is default {label name}\_{Collection start time}\_{Collection end time}  
+* Table name is default {label name}\_{Collection start time}\_{Collection end time}
+
+## Demo
+![KakaoTalk_Video_2023-08-18-19-06-27 (online-video-cutter.com).gif](..%2F..%2F..%2FDownloads%2FKakaoTalk_Video_2023-08-18-19-06-27%20%28online-video-cutter.com%29.gif)
