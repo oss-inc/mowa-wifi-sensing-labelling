@@ -1,3 +1,5 @@
+
+
 # mowa-wifi-sensing-labelling
 This project enables real-time storage of CSI (channel state information) data in a database and makes it easier for Wi-Fi Sensing researchers to process CSI data.
 
@@ -8,7 +10,7 @@ This project enables real-time storage of CSI (channel state information) data i
 
 #### Software
 * Linux Ubuntu
-    > I did it on Linux for the experiment, but it is executable regardless of OS(Windows, macOS).
+    > I did it on Linux for the experiment, but it is executable regardless of OS (Windows, macOS).
 * MySQL Server == 8.0.33
 * Python == 3.8
 
@@ -76,7 +78,7 @@ selected_mac = 'Enter your AP MAC Address'
 * If you want to filter the AP Mac address for CSI data extraction, you can modify the 21st line in `csi_send_server.py`.
 
 2. Managing Flask and Database
-```
+```json
 {
   "publish_SERVER": {
     "host" : "0.0.0.0",
@@ -95,11 +97,11 @@ selected_mac = 'Enter your AP MAC Address'
 }
 ```
 * If your database name changes, you should change the query according to that name. <br>Currently, 64 subcarriers are being queried. If you want to save more subcarriers, you need to modify `columns_query`.
-```
-Example of creating a table
-
+> Example of creating a table
+```sql
 CREATE TABLE Your Database Name .{table_name} (
         {columns_query}
     );
-    """
 ```
+
+* Table name is default {label name}\_{Collection start time}\_{Collection end time}  
