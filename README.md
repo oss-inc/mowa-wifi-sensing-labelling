@@ -76,7 +76,7 @@ sudo python3 csi_send_server.py
 ```
 selected_mac = 'Enter your AP MAC Address'
 ```
-* If you want to filter the AP Mac address for CSI data extraction, you can modify the 21st line in `csi_send_server.py`.
+* If you want to filter the AP MAC address for CSI data extraction, you can modify the 21st line in `csi_send_server.py`.
 
 2. Managing Flask and Database
 ```json
