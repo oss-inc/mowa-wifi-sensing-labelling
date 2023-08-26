@@ -100,7 +100,7 @@ selected_mac = 'Enter your AP MAC Address'
 * If your database name changes, you should change the query according to that name. <br>Currently, 64 subcarriers are being queried. If you want to save more subcarriers, you need to modify `columns_query`.
 > Example of creating a table
 ```sql
-CREATE TABLE Your Database Name .{table_name} (
+CREATE TABLE [Your Database Name].{table_name} (
         {columns_query}
     );
 ```
@@ -108,4 +108,10 @@ CREATE TABLE Your Database Name .{table_name} (
 * Table name is default {label name}\_{Collection start time}\_{Collection end time}
 
 ## Demo
-![KakaoTalk_Video_2023-08-18-19-06-27 (online-video-cutter.com).gif](..%2F..%2F..%2FDownloads%2FKakaoTalk_Video_2023-08-18-19-06-27%20%28online-video-cutter.com%29.gif)
+<video src="https://github.com/oss-inc/mowa-wifi-sensing-labelling/assets/70201882/b2ab5211-743e-47a0-adb7-20b0a41a3d7c" controls="controls">
+</video>
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/pjs990301/mowa-wifi-sensing-labelling/blob/main/LICENSE) file for details
+
+
