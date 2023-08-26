@@ -1,12 +1,17 @@
 {
-  "SERVER": {
-    "host" : "SERVER_IP",
+  "publish_SERVER": {
+    "host" : "0.0.0.0",
     "port" : "SERVER_PORT"
   },
   "Database" : {
     "host": "DATABASE_IP",
     "user": "USER_NAME",
-    "password": "USER_PASSWORD",
+    "password": "USER_PASSWORD!",
     "database": "DATABASE_NAME"
+  },
+  "private_SERVER": {
+    "host" : "SERVER_IP",
+    "port" : "SERVER_PORT"
   }
 }
+
