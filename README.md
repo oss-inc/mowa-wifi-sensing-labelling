@@ -6,20 +6,20 @@ Wi-Fi Sensing researchers to process CSI data.
 ## Content
 
 <!-- TOC -->
-
-* [Getting Started](#getting-started)
+* [mowa-wifi-sensing-labelling](#mowa-wifi-sensing-labelling)
+  * [Content](#content)
+  * [Getting Started](#getting-started)
     * [Dependencies](#dependencies)
-        * [Hardware](#hardware)
-        * [Software](#software)
-        * [Python Libraries - Ubuntu](#python-libraries---ubuntu)
-        * [Python Libraries - Raspberry Pi 4](#python-libraries---raspberry-pi-4)
+      * [Hardware](#hardware)
+      * [Software](#software)
+      * [Python Libraries - Ubuntu](#python-libraries---ubuntu)
+      * [Python Libraries - Raspberry Pi 4](#python-libraries---raspberry-pi-4)
     * [Installing](#installing)
-* [Usage](#usage)
+  * [Usage](#usage)
     * [Execution Program](#execution-program)
     * [Configuration](#configuration)
-* [Demo](#demo)
-* [License](#license)
-
+  * [Demo](#demo)
+  * [License](#license)
 <!-- TOC -->
 
 ## Getting Started
