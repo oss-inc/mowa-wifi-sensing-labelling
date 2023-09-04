@@ -116,21 +116,21 @@ Wi-Fi Sensing researchers to process CSI data.
 
       ```json
       {
-      "publish_SERVER": {
-        "host": "0.0.0.0",
-        "port": "SERVER_PORT"
-      },
-      "Database": {
-        "host": "DATABASE_IP",
-        "user": "USER_NAME",
-        "password": "USER_PASSWORD!",
-        "database": "DATABASE_NAME"
-      },
-      "private_SERVER": {
-        "host": "SERVER_IP",
-        "port": "SERVER_PORT"
+         "publish_SERVER": {
+           "host": "0.0.0.0",
+           "port": "SERVER_PORT"
+         },
+         "Database": {
+           "host": "DATABASE_IP",
+           "user": "USER_NAME",
+           "password": "USER_PASSWORD!",
+           "database": "DATABASE_NAME"
+         },
+         "private_SERVER": {
+           "host": "SERVER_IP",
+           "port": "SERVER_PORT"
+         }
       }
-    }
       ```
 
 * If your database name changes, you should change the query according to that name. <br>Currently, 64 subcarriers are
@@ -140,8 +140,8 @@ Wi-Fi Sensing researchers to process CSI data.
   ```sql
   CREATE TABLE [Your Database Name].{table_name}(
   {
-    columns_query}
-  );
+    columns_query
+  });
   ```
 
 * Table name is default {label name}\_{Collection start time}\_{Collection end time}
