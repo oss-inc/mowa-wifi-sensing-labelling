@@ -3,6 +3,14 @@
 This project enables real-time storage of CSI (channel state information) data in a database and makes it easier for
 Wi-Fi Sensing researchers to process CSI data.
 
+<br/>
+
+🌎 [README.md in English](https://github.com/oss-inc/mowa-wifi-sensing-labelling/blob/main/README.md)  
+🇰🇷  [README.md in Korean](https://github.com/oss-inc/mowa-wifi-sensing-labelling/blob/main/README_KO.md)
+
+<br/>
+
+
 ## Content
 
 <!-- TOC -->
