@@ -161,7 +161,10 @@ Wi-Fi Sensing researchers to process CSI data.
 
 ## License
 
-This project is licensed under the MIT License - see
+This project is licensed under the BSD-3-Clause license - see
 the [LICENSE.md](https://github.com/pjs990301/mowa-wifi-sensing-labelling/blob/main/LICENSE) file for details
+
+The environmental settings are described below.
+the [LICENSE_Dependency.md](https://github.com/oss-inc/mowa-wifi-sensing-labelling/blob/main/LICENSE_Dependency.md) file for details
 
 
